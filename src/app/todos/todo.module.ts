@@ -5,6 +5,7 @@ import { TodoFooterComponent } from './todo-footer/todo-footer.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoPageComponent } from './todo-page/todo-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { TodoPageComponent } from './todo-page/todo-page.component';
     TodoPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule, ReactiveFormsModule
   ],
   exports: [
     TodoPageComponent

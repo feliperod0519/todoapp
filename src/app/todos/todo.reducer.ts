@@ -3,7 +3,7 @@ import { crear } from "./todo.actions";
 import { Todo } from '../todos/todo-page/models/todo.model';
 import { Action } from '@ngrx/store';
 
-export const initialState: Todo[] | null = [];
+export const initialState: Todo[] | null = [ new Todo ('Minou el gato')];
 
 const _todoReducer = createReducer(
     initialState,
