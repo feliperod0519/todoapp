@@ -18,7 +18,7 @@ export class TodoItemComponent implements OnInit {
   chkCompletado: FormControl = new FormControl();
   txtInput: FormControl = new FormControl();
 
-  editando: boolean = true;
+  editando: boolean = false;
 
   constructor(private store:Store<AppState>) { }
 
@@ -32,6 +32,7 @@ export class TodoItemComponent implements OnInit {
 
   editar(){
     this.editando = true;
+    this.txtInput.setValue(this.todo.texto);
     setTimeout(() => {
       this.txtInputRef.nativeElement.select(); //focus
     }, 1);
@@ -39,5 +40,16 @@ export class TodoItemComponent implements OnInit {
 
   terminarEdicion(){
     this.editando = false;
+    if (this.txtInput.invalid){
+      return;
+    }
+    if (this.txtInput.value === this.todo.texto){
+      return;
+    }
+    this.store.dispatch(actions.editar({id: this.todo.id, texto: this.txtInput.value}));
+  }
+
+  borrar(){
+    this.store.dispatch(actions.borrar({id: this.todo.id}));
   }
 }
