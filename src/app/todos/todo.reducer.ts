@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { crear, toggle, editar, borrar, toggleAll } from "./todo.actions";
+import { crear, toggle, editar, borrar, toggleAll, deleteCompleted } from "./todo.actions";
 import { Todo } from '../todos/todo-page/models/todo.model';
 import { Action } from '@ngrx/store';
 
@@ -29,9 +29,12 @@ const _todoReducer = createReducer(
     }),
     on(toggleAll,(state,props)=>{
         return state.map(i=>{ 
-            console.log(props.completado);
             return {...i, completado: props.completado}    
         });
+    }),
+    on(deleteCompleted,(state)=>{
+        console.log('deleteComplete',state);
+        return state.filter(i=>!i.completado);
     })
 );
 
